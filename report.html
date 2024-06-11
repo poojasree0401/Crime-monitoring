@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+    <title>Report an Incident</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Crime Monitoring System</h1>
+    </header>
+    <div class="container">
+        <h2>Report an Incident</h2>
+        <form action="/report" method="post">
+            <label for="description">Description:</label><br>
+            <textarea id="description" name="description" required></textarea><br>
+            <label for="vehicle_registration">Vehicle Registration Number:</label><br>
+            <input type="text" id="vehicle_registration" name="vehicle_registration" required><br>
+            <label for="location">Location:</label><br>
+            <input type="text" id="location" name="location" required><br>
+            <label for="gender">Gender:</label><br>
+            <select id="gender" name="gender" required>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+            </select><br>
+            <label for="crime_type">Crime Type:</label><br>
+            <input type="text" id="crime_type" name="crime_type" required><br>
+            <label for="most_wanted">Most Wanted:</label><br>
+            <select id="most_wanted" name="most_wanted" required>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+            </select><br>
+            <input type="submit" value="Report">
+        </form>
+        {% if success_message %}
+    <div>
+        <p>{{ success_message }}</p>   
+    </div>
+    {% endif %}
+        <div class="button-container">
+            <button onclick="window.location.href='/'">Go to Home</button>
+        </div>
+    </div>
+</body>
+</html>

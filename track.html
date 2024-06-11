@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crime Monitoring System - Track Vehicle</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+
+</head>
+<body text="white">
+    <h1>Track Vehicle</h1>
+    <form action="/track" method="post">
+        <label for="vehicle_registration">Vehicle Registration Number:</label><br>
+        <input type="text" id="vehicle_registration" name="vehicle_registration" required><br>
+        <input type="submit" value="Track">
+    </form>
+    {% if incidents %}
+    <h2>Incidents involving {{ vehicle_registration }}</h2>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Description</th>
+            <th>Vehicle Registration</th>
+            <th>Location</th>
+            <th>Status</th>
+            <th>Gender</th>
+            <th>Crime Type</th>
+            <th>Most Wanted</th>
+        </tr>
+        {% for incident in incidents %}
+        <tr>
+            <td>{{ incident.id }}</td>
+            <td>{{ incident.date }}</td>
+            <td>{{ incident.time }}</td>
+            <td>{{ incident.description }}</td>
+            <td>{{ incident.vehicle_registration }}</td>
+            <td>{{ incident.location }}</td>
+            <td>{{ incident.status }}</td>
+            <td>{{ incident.gender }}</td>
+            <td>{{ incident.crime_type }}</td>
+            <td>{{ incident.most_wanted }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+    {% if not incidents and request.method == 'POST' %}
+    <p style="color: red;">Wrong vehicle registration number. Please enter a valid one.</p>
+    {% endif%}
+    <div class="button">
+        <button onclick="goToHome()">Go Back to Home Page</button>
+        </div>
+    <script>
+        function goToHome() {
+            window.location.href = "/";
+        }
+    </script>
+</body>
+</html>

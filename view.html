@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crime Monitoring System - View Incidents</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+
+</head>
+<body>
+    <header>
+        <h1>Crime Monitoring System</h1>
+    </header>
+    <div class="container">
+        <h2>View Incidents</h2>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Description</th>
+                <th>Vehicle Registration</th>
+                <th>Location</th>
+                <th>Status</th>
+                <th>Gender</th>
+                <th>Crime Type</th>
+                <th>Most Wanted</th>
+            </tr>
+            {% for incident in incidents %}
+            <tr>
+                <td>{{ incident.id }}</td>
+                <td>{{ incident.date }}</td>
+                <td>{{ incident.time }}</td>
+                <td>{{ incident.description }}</td>
+                <td>{{ incident.vehicle_registration }}</td>
+                <td>{{ incident.location }}</td>
+                <td>{{ incident.status }}</td>
+                <td>{{ incident.gender }}</td>
+                <td>{{ incident.crime_type }}</td>
+                <td>{{ incident.most_wanted }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <div class="btn">
+    <button onclick="goToHome()">Go Back to Home Page</button>
+    </div>
+    <script>
+        function goToHome() {
+            window.location.href = "/";
+        }
+    </script>
+</body>
+</html>
